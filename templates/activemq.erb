@@ -1,6 +1,6 @@
 # file managed by puppet.
 <% @data['sysconfig'].each do |k, v| -%>
-<% unless (v.nil? || :undef.eql?(v)) -%>
+<% unless (v.nil? || :undef.eql?(v) || "undef".eql?(v)) -%>
 <%= k %>="<%= v %>"
 <% end -%>
 <% end -%>
