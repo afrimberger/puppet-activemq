@@ -23,6 +23,24 @@ class activemq::config inherits activemq {
   }
 
   # activemq.xml
+  datacat { $jettyrealmfile:
+    template => "activemq/jetty-realm.properties.erb",
+    owner => 'root',
+    group => 'root',
+    mode  => '0644',
+  }
+
+  augeas{'amq_enable_webauth':
+    changes => [
+      "set beans/bean[#attribute/id='securityConstraint']/property[#attribute/name='authenticate']/#attribute/value false",
+    ],
+    incl    => $jettyconfigfile,
+    context => '/files/etc/activemq/jetty.xml',
+    lens    => 'Xml.lns',
+    notify  => Service['activemq'],
+  }
+
+  # activemq.xml
     datacat{$configfile:
        template => 'activemq/activemq.xml.erb',
        owner    => 'root',
