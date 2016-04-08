@@ -13,6 +13,16 @@
 # [*configdir*]
 #   Activemq configuration directory, defaults to /etc/activemq
 #
+# [*jettyconfigfile*]
+#   Where jetty's config file is located (e.g. /etc/activemq/jetty.xml).
+#
+# [*jettyrealmfile*]
+#   Where jetty's realm file with username and passwords is located (e.g. /etc/activemq/jetty-realm.properties).
+#
+# [*webauth*]
+#   Should webauth be enabled? Defaults to false. If set to yes, users have to be defined. See activemq::webuser
+#   for more details
+#
 # [*amqmemory*]
 #   Parameter for <memoryUsage limit="20 mb"/> element, defaults to '20 mb'.
 #
@@ -107,6 +117,9 @@ class activemq  (
   $package_name           = $activemq::params::package_name,
   $configdir              = $activemq::params::configdir,
   $credentials            = $activemq::params::credentials,
+  $jettyconfigfile        = $activemq::params::jettyconfigfile,
+  $jettyrealmfile         = $activemq::params::jettyrealmfile,
+  $webauth                = $activemq::params::webauth,
   $configfile             = $activemq::params::configfile,
   $amqmemory              = $activemq::params::amqmemory,
   $amqstore               = $activemq::params::amqstore,
@@ -143,6 +156,9 @@ class activemq  (
     validate_string($dedicatedTaskRunnerKey)
     validate_string($amquser)
     validate_string($amqgroup)
+    validate_string($jettyrealmfile)
+    validate_string($jettyconfigfile)
+    validate_bool($webauth)
     validate_bool($keystore)
     if $keystore {
       validate_string($keystore_pass)

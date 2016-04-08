@@ -8,7 +8,13 @@ class activemq::params {
    $configdir      = '/etc/activemq'
    $credentials    = "${configdir}/credentials.properties"
    $configfile     = "${configdir}/activemq.xml"
-   # 
+   #
+
+   $jettyrealmfile  = "${configdir}/jetty-realm.properties"
+   $jettyconfigfile = "${configdir}/jetty.xml"
+   $webauth         = false
+
+   #
    $amquser        = 'activemq'
    $amqgroup       = 'activemq'
    $amqbrokername  = $::fqdn

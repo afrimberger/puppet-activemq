@@ -1,0 +1,9 @@
+# file managed by puppet.
+
+# Defines users that can access the web (console, demo, etc.)
+# username: password [,rolename ...]
+#admin: admin, admin
+
+<% @data['webusers'].each do |u| -%>
+<%= u['username'] %>: <%= u['password'] %>, <%= u['roles'].join(',') %>
+<% end -%>
