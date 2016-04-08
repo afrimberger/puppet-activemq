@@ -8,7 +8,8 @@ class activemq::params {
    $configdir      = '/etc/activemq'
    $credentials    = "${configdir}/credentials.properties"
    $configfile     = "${configdir}/activemq.xml"
-   # 
+   $sysconfigfile  = "/etc/sysconfig/activemq"
+   #
    $amquser        = 'activemq'
    $amqgroup       = 'activemq'
    $amqbrokername  = $::fqdn
@@ -17,6 +18,14 @@ class activemq::params {
    $amqmemory      = '20 mb'
    $amqstore       = '1 gb'
    $amqtemp        = '100 mb'
+
+   # settings for parametrizing the startup script of activemq.
+   # if variable is set to undef, the startup script's defaults are used
+   $amqbasedir     = undef # ${activemq.base} defaults to $amqhomedir on OEL7
+   $amqhomedir     = undef # ${activemq.home} defaults to /usr/share/activemq on OEL7
+   $amqconfdir     = undef # ${activemq.conf} defaults to /etc/activemq on OEL7
+   $amqdatadir     = undef # ${activemq.data} defaults to $amqbasedir/data on OEL7
+   $amqmemopts     = undef # ACTIVEMQ_OPTS_MEMOERY defaults to "-Xms512m -Xmx512m" on OEL7
 
    #tanuki wrapper variables.
    $configwrapper          = '/etc/activemq/activemq-wrapper.conf'

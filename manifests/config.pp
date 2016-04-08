@@ -13,7 +13,16 @@ class activemq::config inherits activemq {
        mode  => '0644'
     }
 
-    # activemq.xml
+  class { activemq::sysconfig:
+    sysconfigfile => $sysconfigfile,
+    amqbasedir    => $amqbasedir,
+    amqhomedir    => $amqhomedir,
+    amqconfdir    => $amqconfdir,
+    amqdatadir    => $amqdatadir,
+    amqmemopts    => $amqmemopts,
+  }
+
+  # activemq.xml
     datacat{$configfile:
        template => 'activemq/activemq.xml.erb',
        owner    => 'root',

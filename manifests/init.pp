@@ -13,6 +13,27 @@
 # [*configdir*]
 #   Activemq configuration directory, defaults to /etc/activemq
 #
+# [*sysconfigfile*]
+#   Path to the sysconfigfile (e.g. /etc/sysconfig/activemq).
+#
+# [*amqbasedir*]
+#   Parameter for ACTIVEMQ_BASE.
+#
+# [*amqhomedir*]
+#   Parameter for ACTIVEMQ_HOME.
+#
+# [*amqconfdir*]
+#   Parameter for ACTIVEMQ_CONF.
+#
+# [*amqdatadir*]
+#   Parameter for ACTIVEMQ_DATA.
+#
+# [*amqmemopts*]
+#   Parameter for ACTIVEMQ_OPTS_MEMORY.
+#
+# [*customvars*]
+#   Custom key value pairs to append to the sysconfig file
+#
 # [*amqmemory*]
 #   Parameter for <memoryUsage limit="20 mb"/> element, defaults to '20 mb'.
 #
@@ -108,6 +129,12 @@ class activemq  (
   $configdir              = $activemq::params::configdir,
   $credentials            = $activemq::params::credentials,
   $configfile             = $activemq::params::configfile,
+  $sysconfigfile          = $activemq::params::sysconfigfile,
+  $amqbasedir             = $activemq::params::amqbasedir,
+  $amqhomedir             = $activemq::params::amqhomedir,
+  $amqconfdir             = $activemq::params::amqconfdir,
+  $amqdatadir             = $activemq::params::amqdatadir,
+  $amqmemopts             = $activemq::params::amqmemopts,
   $amqmemory              = $activemq::params::amqmemory,
   $amqstore               = $activemq::params::amqstore,
   $amqtemp                = $activemq::params::amqtemp,
@@ -134,7 +161,13 @@ class activemq  (
     validate_string($amqbrokername)
     validate_string($package_version)
     validate_string($package_name)
+    validate_string($sysconfigfile)
+    validate_string($amqbasedir)
+    validate_string($amqhomedir)
+    validate_string($amqconfdir)
+    validate_string($amqdatadir)
     validate_string($amqmemory)
+    validate_string($amqmemopts)
     validate_string($amqstore)
     validate_string($amqtemp)
     validate_string($configdir)
