@@ -32,7 +32,7 @@ class activemq::config inherits activemq {
 
   augeas{'amq_enable_webauth':
     changes => [
-      "set beans/bean[#attribute/id='securityConstraint']/property[#attribute/name='authenticate']/#attribute/value false",
+      "set beans/bean[#attribute/id='securityConstraint']/property[#attribute/name='authenticate']/#attribute/value ${webauth}",
     ],
     incl    => $jettyconfigfile,
     context => '/files/etc/activemq/jetty.xml',
