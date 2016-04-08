@@ -20,6 +20,7 @@ class activemq::config inherits activemq {
     amqconfdir    => $amqconfdir,
     amqdatadir    => $amqdatadir,
     amqmemopts    => $amqmemopts,
+    notify        => Service['activemq'],
   }
 
   # activemq.xml
